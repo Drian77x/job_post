@@ -6,6 +6,11 @@ import ast
 from collections import Counter
 
 
+import dash
+from dash import dcc, html
+import plotly.express as px
+
+
 # Download latest version
 path = kagglehub.dataset_download("lukebarousse/data-analyst-job-postings-google-search")
 posts = pd.read_csv(f'{path}/gsearch_jobs.csv')
@@ -85,5 +90,4 @@ plt.xticks(rotation = 50)
 plt.xlabel('Skills')
 plt.title('MOST DEMANDED SKILLS')
 plt.show()
-
 
