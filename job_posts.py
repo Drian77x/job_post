@@ -4,12 +4,7 @@ from matplotlib import pyplot as plt
 import seaborn as sns
 import ast
 from collections import Counter
-
-
-import dash
-from dash import dcc, html
-import plotly.express as px
-
+from datetime import datetime
 
 # Download latest version
 path = kagglehub.dataset_download("lukebarousse/data-analyst-job-postings-google-search")
@@ -50,6 +45,7 @@ skill_count = Counter(flatlist)
 skill_count_df = pd.DataFrame(skill_count.items(), columns=['skill', 'count']).sort_values(by='count', ascending=False)
 top_skills = skill_count_df.head(20)
 
+today = datetime.today().strftime('%d/%m/%Y')
 fig, axs = plt.subplots(2, 2, figsize=(14, 10))
 
 #WHERE ARE JOB OFFERS PUBLISHED?
@@ -79,7 +75,7 @@ axs[1, 1].set_ylabel('Count')
 axs[1, 1].set_title('MOST DEMANDED SKILLS')
 axs[1, 1].tick_params(axis='x', rotation=50)
 
-fig.suptitle('DATA ANALYST JOB OFFERS REPORT', fontsize=16)
+fig.suptitle(f'DATA ANALYST JOB OFFERS REPORT as of {today}')
 
 plt.tight_layout()
 plt.show()
